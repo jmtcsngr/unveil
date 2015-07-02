@@ -14,16 +14,14 @@
 
     var $w = $(window),
         th = threshold || 0,
-        retina = window.devicePixelRatio > 1,
-        attrib = retina? "data-src-retina" : "data-src",
+        attrib = "data-src",
         images = this,
         loaded;
 
     this.one("unveil", function() {
       var source = this.getAttribute(attrib);
-      source = source || this.getAttribute("data-src");
       if (source) {
-        this.setAttribute("src", source);
+        this.setAttribute("src", source).removeAttribute("data-src");
         if (typeof callback === "function") callback.call(this);
       }
     });
